@@ -49,7 +49,7 @@ const teacherSchema = new Schema<ITeacher>(
     subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
     classIds: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
     salary: { type: Number, required: true, min: 0 },
-    joiningDate: { type: Date, required: true },
+    joiningDate: { type: Date, required: true, default: Date.now() },
     status: {
       type: String,
       enum: Object.values(TeacherStatus),
