@@ -33,7 +33,6 @@ export function DataTable<T>({
   });
 
   if (isLoading) return <TableSkeleton />;
-  console.log(data, data.length, 'data length');
   if (!data.length) {
     return <EmptyState icon={Inbox} title={emptyTitle} description={emptyDescription} />;
   }

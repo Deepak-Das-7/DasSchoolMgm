@@ -27,7 +27,7 @@ interface FieldConfig {
   required?: boolean;
   table?: boolean;
   placeholder?: string;
-  colSpan?: 1 | 2 | 3;
+  colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
 interface ModuleListPageProps<T extends Record<string, unknown>> {
@@ -182,7 +182,7 @@ export function ModuleListPage<T extends Record<string, unknown>>({
       <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
 
       {/* Input Modal System */}
-      <Modal isOpen={modalOpen} onClose={() => !saving && setModalOpen(false)} title={editing ? `Update ${title}` : `Create New ${title}`}>
+      <Modal isOpen={modalOpen} onClose={() => !saving && setModalOpen(false)} title={editing ? `Update ${title}` : `Create New ${title}`} size="xl">
         <ModuleFormGrid fields={fields} form={form} onChange={handleFormFieldChange} disabled={saving} />
 
         {/* Modal Actions Footer */}

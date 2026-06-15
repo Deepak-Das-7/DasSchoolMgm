@@ -5,7 +5,7 @@ interface FieldConfig {
     options?: Array<{ value: string; label: string }>;
     required?: boolean;
     placeholder?: string;
-    colSpan?: 1 | 2 | 3;
+    colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
 interface ModuleFormGridProps {
@@ -15,13 +15,28 @@ interface ModuleFormGridProps {
     disabled: boolean;
 }
 
+// Map configuration colSpan directly to Tailwind classes
+const COL_SPAN_MAP: Record<number, string> = {
+    1: "md:col-span-1",
+    2: "md:col-span-2",
+    3: "md:col-span-3",
+    4: "md:col-span-4",
+    5: "md:col-span-5",
+    6: "md:col-span-6",
+    7: "md:col-span-7",
+    8: "md:col-span-8",
+    9: "md:col-span-9",
+    10: "md:col-span-10",
+    11: "md:col-span-11",
+    12: "md:col-span-12",
+};
+
 export function ModuleFormGrid({ fields, form, onChange, disabled }: ModuleFormGridProps) {
     return (
         <div className="max-h-[calc(100vh-220px)] overflow-y-auto pr-1 grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-5 pt-2">
             {fields.map((f) => {
-                let spanClass = "md:col-span-1";
-                if (f.colSpan === 2) spanClass = "md:col-span-2";
-                if (f.colSpan === 3) spanClass = "md:col-span-3";
+                // Default to 1 if no colSpan is provided, or grab the matching class
+                const spanClass = COL_SPAN_MAP[f.colSpan || 1] || "md:col-span-1";
 
                 return (
                     <div key={f.key} className={`space-y-1.5 ${spanClass}`}>
