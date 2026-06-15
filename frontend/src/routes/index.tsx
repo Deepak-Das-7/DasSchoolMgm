@@ -28,8 +28,9 @@ const CommunicationPage = lazy(() => import('@/pages/communication/Communication
 const EventsPage = lazy(() => import('@/pages/events/EventsPage').then((m) => ({ default: m.EventsPage })));
 const ReportsPage = lazy(() => import('@/pages/reports/ReportsPage').then((m) => ({ default: m.ReportsPage })));
 const SettingsPage = lazy(() => import('@/pages/settings/SettingsPage').then((m) => ({ default: m.SettingsPage })));
-const SchoolProfilePage = lazy(() => import('@/pages/school/SchoolProfilePage').then((m) => ({ default: m.SchoolProfilePage })));
-
+const SchoolProfilePage = lazy(() => import('@/pages/school/ProfilePage').then((m) => ({ default: m.SchoolProfilePage })));
+const SchoolSessionPage = lazy(() => import('@/pages/school/SessionPage').then((m) => ({ default: m.SchoolSessionPage })));
+const SchoolBranchPage = lazy(() => import('@/pages/school/BranchPage').then((m) => ({ default: m.SchoolBranchPage })));
 function PageLoader() {
   return (
     <div className="space-y-4 p-6">
@@ -84,8 +85,8 @@ export const router = createBrowserRouter([
       { path: 'reports', element: <LazyPage><ReportsPage /></LazyPage> },
       { path: 'settings', element: <LazyPage><SettingsPage /></LazyPage> },
       { path: 'school/profile', element: <LazyPage><SchoolProfilePage /></LazyPage> },
-      { path: 'school/sessions', element: <LazyPage><SchoolProfilePage /></LazyPage> },
-      { path: 'school/branches', element: <LazyPage><SchoolProfilePage /></LazyPage> },
+      { path: 'school/sessions', element: <LazyPage><SchoolSessionPage /></LazyPage> },
+      { path: 'school/branches', element: <LazyPage><SchoolBranchPage /></LazyPage> },
       { path: 'school/departments', element: <LazyPage><SchoolProfilePage /></LazyPage> },
     ],
   },

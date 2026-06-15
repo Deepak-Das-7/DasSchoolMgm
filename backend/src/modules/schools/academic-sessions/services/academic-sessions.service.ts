@@ -10,14 +10,18 @@ import {
   UpdateAcademicSessionInput,
 } from '../validators/academic-sessions.validators';
 
+const dateOptions: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' };
+const formatter = new Intl.DateTimeFormat('en-GB', dateOptions);
+
 function toResponse(session: IAcademicSession): AcademicSessionResponse {
   return {
     id: session._id.toString(),
     name: session.name,
-    startDate: session.startDate,
-    endDate: session.endDate,
+    startDate: formatter.format(new Date(session.startDate)) as any,
+    endDate: formatter.format(new Date(session.endDate)) as any,
     isCurrent: session.isCurrent,
     schoolId: session.schoolId!.toString(),
+    status: session.status,
     createdAt: session.createdAt,
     updatedAt: session.updatedAt,
   };

@@ -9,6 +9,7 @@ export function ClassesPage() {
       fields={[
         { key: 'name', label: 'Class Name', required: true },
         { key: 'numericOrder', label: 'Order', type: 'number' },
+        { key: 'sessionId', label: 'Session ID', type: 'text' },
       ]}
     />
   );

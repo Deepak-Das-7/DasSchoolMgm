@@ -3,6 +3,7 @@ export interface AcademicSessionResponse {
   name: string;
   startDate: Date;
   endDate: Date;
+  status: "active" | "upcoming" | "completed";
   isCurrent: boolean;
   schoolId: string;
   createdAt: Date;

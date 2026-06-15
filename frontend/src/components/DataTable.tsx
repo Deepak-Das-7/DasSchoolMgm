@@ -33,13 +33,13 @@ export function DataTable<T>({
   });
 
   if (isLoading) return <TableSkeleton />;
-
+  console.log(data, data.length, 'data length');
   if (!data.length) {
     return <EmptyState icon={Inbox} title={emptyTitle} description={emptyDescription} />;
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-[var(--border)]">
+    <div className="overflow-x-auto rounded-md border border-[var(--border)]">
       <table className="w-full text-sm">
         <thead>
           {table.getHeaderGroups().map((hg) => (
@@ -77,7 +77,7 @@ export function DataTable<T>({
               onClick={() => onRowClick?.(row.original)}
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-3 text-[var(--text-primary)]">
+                <td key={cell.id} className="px-4 py-1 text-[var(--text-primary)]">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
