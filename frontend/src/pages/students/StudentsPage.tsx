@@ -3,12 +3,12 @@ import { ModuleListPage } from '@/features/ModuleListPage';
 import { api } from '@/services/api';
 import { useNotificationStore } from '@/stores/notificationStore';
 
-interface DropdownItem {
+export interface DropdownItem {
   _id: string;
   name: string;
 }
 
-interface SelectOption {
+export interface SelectOption {
   value: string;
   label: string;
 }
@@ -53,8 +53,6 @@ export function StudentsPage() {
       </div>
     );
   }
-  console.log('Class Options:', classOptions);
-  console.log('Section Options:', sectionOptions);
   return (
     <ModuleListPage
       title="Students"
