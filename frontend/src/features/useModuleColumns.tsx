@@ -43,8 +43,6 @@ export function useModuleColumns<T extends Record<string, unknown>>({
                         }
                     }
 
-                    console.log(`Rendering cell for field "${f.key}" with value:`, val);
-
                     return (
                         <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                             {val !== undefined && val !== null && val !== '' ? String(val) : (

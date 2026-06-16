@@ -14,23 +14,25 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { useModuleColumns } from './useModuleColumns';
 import { ModuleFormGrid } from './ModuleFormGrid';
 
-interface PaginatedResponse<T> {
+export interface PaginatedResponse<T> {
   data: T[];
   pagination: { page: number; totalPages: number; total: number };
 }
 
-interface FieldConfig {
+export interface FieldConfig {
   key: string;
   label: string;
   type?: 'text' | 'number' | 'email' | 'date' | 'select' | 'boolean';
   options?: Array<{ value: string; label: string }>;
   required?: boolean;
+  defaultValue?: any;
+  disabled?: boolean;
   table?: boolean;
   placeholder?: string;
   colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
-interface ModuleListPageProps<T extends Record<string, unknown>> {
+export interface ModuleListPageProps<T extends Record<string, unknown>> {
   title: string;
   description: string;
   endpoint: string;
@@ -126,8 +128,11 @@ export function ModuleListPage<T extends Record<string, unknown>>({
     try {
       const body: Record<string, unknown> = {};
       fields.forEach((f) => {
-        const val = form[f.key];
-        if (val !== undefined && val !== '') {
+        // 1. Get the value from form state. If it doesn't exist, fall back to f.defaultValue
+        const val = form[f.key] !== undefined && form[f.key] !== ''
+          ? form[f.key]
+          : f.defaultValue;
+        if (val !== undefined && val !== null && val !== '') {
           body[f.key] = f.type === 'number' ? Number(val) : val;
         }
       });

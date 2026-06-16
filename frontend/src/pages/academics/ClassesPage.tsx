@@ -42,7 +42,14 @@ export function ClassesPage() {
       endpoint="/academics/classes"
       fields={[
         { key: 'name', label: 'Class Name', required: true, colSpan: 1 },
-        { key: 'numericOrder', label: 'Order', type: 'number', colSpan: 1 },
+        {
+          key: 'numericOrder',
+          label: 'Order',
+          type: 'select',
+          required: true,
+          options: ["1", "2", "3", "4", "5", "5", "6", "7", "8", "9", "10", "11", "12"].map((num) => ({ value: num, label: num })),
+          colSpan: 1
+        },
         {
           key: 'sessionId',
           label: 'Session',

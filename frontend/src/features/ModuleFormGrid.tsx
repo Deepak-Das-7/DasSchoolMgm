@@ -1,12 +1,4 @@
-interface FieldConfig {
-    key: string;
-    label: string;
-    type?: 'text' | 'number' | 'email' | 'date' | 'select' | 'boolean';
-    options?: Array<{ value: string; label: string }>;
-    required?: boolean;
-    placeholder?: string;
-    colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}
+import { FieldConfig } from "./ModuleListPage";
 
 interface ModuleFormGridProps {
     fields: FieldConfig[];
@@ -91,7 +83,7 @@ export function ModuleFormGrid({ fields, form, onChange, disabled }: ModuleFormG
                                         type={f.type || 'text'}
                                         placeholder={f.placeholder || `Enter ${f.label.toLowerCase()}...`}
                                         className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3.5 py-2 text-sm text-slate-900 dark:text-white shadow-sm transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:opacity-60"
-                                        value={form[f.key] || ''}
+                                        value={form[f.key] !== undefined && form[f.key] !== null ? form[f.key] : (f.defaultValue || '')}
                                         onChange={(e) => onChange(f.key, e.target.value)}
                                         disabled={disabled}
                                     />

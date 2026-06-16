@@ -27,7 +27,7 @@ export class SubjectService {
     const extra: Record<string, unknown> = {};
     if (query.classId) extra.classIds = new Types.ObjectId(query.classId);
     if (query.type) extra.type = query.type;
-    return subjectRepository.findAll(schoolId, query, ['name', 'code'], extra);
+    return subjectRepository.findAll(schoolId, query, ['name', 'code', 'type'], extra);
   }
 
   async getById(schoolId: string | null, id: string) {
