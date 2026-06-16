@@ -178,7 +178,8 @@ export function ModuleListPage<T extends Record<string, unknown>>({
       </div>
 
       {/* Main Table Layout */}
-      <DataTable data={data} columns={columns} isLoading={loading} />
+      <DataTable data={data} columns={columns} isLoading={loading} onRowClick={(row) => console.log('Row clicked:', row)}
+      />
       <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
 
       {/* Input Modal System */}

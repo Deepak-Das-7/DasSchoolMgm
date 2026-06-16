@@ -5,6 +5,7 @@ import { useNotificationStore } from '@/stores/notificationStore';
 
 export interface DropdownItem {
   _id: string;
+  id: string;
   name: string;
 }
 

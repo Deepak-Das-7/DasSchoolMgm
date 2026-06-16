@@ -3,10 +3,13 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Edit2, Trash2, Info } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
+// 1. Update your configuration interface so TypeScript knows about types and options
 interface FieldConfig {
     key: string;
     label: string;
     table?: boolean;
+    type?: string;
+    options?: Array<{ value: string | number; label: string }>;
 }
 
 interface UseModuleColumnsProps<T> {
@@ -26,10 +29,22 @@ export function useModuleColumns<T extends Record<string, unknown>>({
         const fieldColumns: ColumnDef<T, unknown>[] = fields
             .filter((f) => f.table !== false)
             .map((f) => ({
+                // Keep the key pointing to the raw data property (e.g., 'sessionId')
                 accessorKey: f.key,
                 header: f.label,
                 cell: (info) => {
-                    const val = info.getValue();
+                    let val = info.getValue();
+
+                    // 2. If it's a select field, swap the raw value (ID) with the display label
+                    if (f.type === 'select' && f.options) {
+                        const matchedOption = f.options.find(opt => opt.value === val);
+                        if (matchedOption) {
+                            val = matchedOption.label;
+                        }
+                    }
+
+                    console.log(`Rendering cell for field "${f.key}" with value:`, val);
+
                     return (
                         <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                             {val !== undefined && val !== null && val !== '' ? String(val) : (
