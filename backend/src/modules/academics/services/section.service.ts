@@ -36,6 +36,12 @@ export class SectionService {
     return doc;
   }
 
+  // async getByClassId(schoolId: string | null, classId: string) {
+  //   const doc = await sectionRepository.findByClass(schoolId, classId);
+  //   if (!doc) throw new AppError('Section not found', 404);
+  //   return doc;
+  // }
+
   async update(
     schoolId: string | null,
     userId: string,

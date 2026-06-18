@@ -26,7 +26,7 @@ export function StudentsPage() {
         // 1. Change the generic to reflect that the API returns an object with a .data property
         const [classesResponse, sectionsResponse] = await Promise.all([
           api.get<{ data: DropdownItem[] }>('/academics/classes'),
-          api.get<{ data: DropdownItem[] }>('/academics/sections'),
+          api.get<{ data: DropdownItem[] }>('/academics/sections/class-sections') // Assuming this endpoint returns sections grouped by class,
         ]);
 
         // 2. Safely map over the .data arrays
